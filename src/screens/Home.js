@@ -1,14 +1,31 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Text, StyleSheet, StatusBar,TouchableOpacity,TextInput, Image } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Axios from 'axios';
 
-const Home = ()=>{
+const Home = ({navigation})=>{
+
+  const [search, setSearch] = useState('');
+
+  const submitSearch = ()=>{
+    Axios.get( `https://api.github.com/search/users?q=${search}`)
+    .then((res)=>{
+      // console.log(res.data.items);
+      navigation.navigate('ListRepo',res.data.items);
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#25292D"/>
       <Image style={styles.logo} source={require('../../assets/image/logo-github.png')}/>
       <Text style={styles.salam}>Hi Welcome to Github</Text>
       <TextInput
+      onSubmitEditing={submitSearch}
+      onChangeText={(val)=>setSearch(val)}
+      value={search}
       style={styles.search}
       placeholder="Search Repository"/>
     </View>

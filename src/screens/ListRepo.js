@@ -1,8 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image, StatusBar } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image, StatusBar,FlatList } from 'react-native';
 import CardRepo from '../components/CardRepo';
+import Axios from 'axios';
 
-const ListRepo = ()=>{
+const ListRepo = ({route})=>{
+
+  const data = route.params;
+  const [repos,setRepos] = useState([]);
+  console.log(repos)
+  useEffect(()=>{
+    Axios.get(data[0].repos_url)
+    .then((res)=>{
+      setRepos(res.data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+  },[]);
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#25292D"/>
@@ -10,10 +25,10 @@ const ListRepo = ()=>{
         <View style={styles.infoUser}>
           <Image
           style={styles.imageAvatar}
-          source={require('../../assets/image/logo-github.png')}/>
+          source={{uri:data[0].avatar_url}}/>
           <View style={styles.nameBox}>
-            <Text style={styles.name}>Amel (nama)</Text>
-            <Text style={styles.username}>GustiAmelia (login)</Text>
+            <Text style={styles.name}>{data[0].name}</Text>
+            <Text style={styles.username}>{data[0].login}</Text>
           </View>
         </View>
         <TextInput
@@ -21,9 +36,14 @@ const ListRepo = ()=>{
         placeholder="Find Repository"/>
       </View>
       <View style={styles.footer}>
-        <CardRepo/>
-        <CardRepo/>
-        <CardRepo/>
+        <FlatList
+        data={repos}
+        renderItem ={({item})=>{
+          return (
+            <CardRepo item={item}/>
+          );
+        }}
+        />
       </View>
     </View>
   );
@@ -48,6 +68,7 @@ const styles = StyleSheet.create({
   imageAvatar:{
     width:60,
     height:60,
+    borderRadius:50,
   },
   nameBox:{
     marginLeft:15,

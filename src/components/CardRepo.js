@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, StatusBar,TouchableOpacity,TextInput } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const CardRepo = ()=>{
+const CardRepo = ({item})=>{
   return (
     <View style={styles.card}>
       <View>
-        <Text style={styles.title}>Zwallet</Text>
+        <Text style={styles.title}>{item.name}</Text>
         <View style={styles.toolsWrapper}>
           <MaterialCommunityIcons name="circle" size={15} color="#F1E059"/>
           <Text style={styles.tools}>JavaScript</Text>
