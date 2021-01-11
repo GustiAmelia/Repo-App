@@ -6,10 +6,10 @@ import Axios from 'axios';
 const ListRepo = ({route})=>{
 
   const data = route.params;
+  console.log(data)
   const [repos,setRepos] = useState([]);
-  console.log(repos)
   useEffect(()=>{
-    Axios.get(data[0].repos_url)
+    Axios.get(data.repos_url)
     .then((res)=>{
       setRepos(res.data);
     })
@@ -25,10 +25,10 @@ const ListRepo = ({route})=>{
         <View style={styles.infoUser}>
           <Image
           style={styles.imageAvatar}
-          source={{uri:data[0].avatar_url}}/>
+          source={{uri:data.avatar_url}}/>
           <View style={styles.nameBox}>
-            <Text style={styles.name}>{data[0].name}</Text>
-            <Text style={styles.username}>{data[0].login}</Text>
+            <Text style={styles.name}>{data.name}</Text>
+            <Text style={styles.username}>{data.login}</Text>
           </View>
         </View>
         <TextInput
