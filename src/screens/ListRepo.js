@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image, StatusBar } from 'react-native';
 import CardRepo from '../components/CardRepo';
 
 const ListRepo = ()=>{
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#25292D"/>
       <View style={styles.header}>
         <View style={styles.infoUser}>
           <Image

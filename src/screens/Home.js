@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Home = ()=>{
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#25292D"/>
       <Image style={styles.logo} source={require('../../assets/image/logo-github.png')}/>
       <Text style={styles.salam}>Hi Welcome to Github</Text>
       <TextInput

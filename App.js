@@ -7,19 +7,21 @@
  */
 
 import React from 'react';
-import { View } from 'react-native';
 import Home from './src/screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ListRepo from './src/screens/ListRepo';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    // <ListRepo/>
-    <Home/>
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none">
+        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="ListRepo" component={ListRepo}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
