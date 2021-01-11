@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar,TouchableOpacity,TextInput,Image } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image } from 'react-native';
 import CardRepo from '../components/CardRepo';
 
 const ListRepo = ()=>{
