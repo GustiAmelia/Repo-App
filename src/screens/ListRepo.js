@@ -1,12 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import { View, Text, StyleSheet,TouchableOpacity,TextInput,Image, StatusBar,FlatList } from 'react-native';
+import { View, Text, StyleSheet,TextInput,Image, StatusBar,FlatList } from 'react-native';
 import CardRepo from '../components/CardRepo';
 import Axios from 'axios';
 
 const ListRepo = ({route})=>{
 
   const data = route.params;
-  console.log(data)
   const [repos,setRepos] = useState([]);
   useEffect(()=>{
     Axios.get(data.repos_url)
@@ -27,7 +26,6 @@ const ListRepo = ({route})=>{
           style={styles.imageAvatar}
           source={{uri:data.avatar_url}}/>
           <View style={styles.nameBox}>
-            <Text style={styles.name}>{data.name}</Text>
             <Text style={styles.username}>{data.login}</Text>
           </View>
         </View>
@@ -73,15 +71,9 @@ const styles = StyleSheet.create({
   nameBox:{
     marginLeft:15,
   },
-  name:{
-    color:'white',
-    fontSize:20,
-    marginBottom:5,
-    fontWeight:'bold',
-  },
   username:{
     color:'white',
-    fontSize:14,
+    fontSize:20,
   },
   search:{
     backgroundColor:'white',
@@ -91,6 +83,6 @@ const styles = StyleSheet.create({
     fontSize:16,
   },
   footer:{
-    paddingTop:20,
+    flex:8,
   },
 });

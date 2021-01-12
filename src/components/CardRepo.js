@@ -1,23 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar,TouchableOpacity,TextInput } from 'react-native';
+import { View, Text, StyleSheet,Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CardRepo = ({item})=>{
   return (
     <View style={styles.card}>
-      <View>
+      <Image
+      style={styles.avatar}
+      source={{uri:item.owner.avatar_url}}/>
+      <View style={styles.infoRepo}>
         <Text style={styles.title}>{item.name}</Text>
         <View style={styles.toolsWrapper}>
           <MaterialCommunityIcons name="circle" size={15} color="#F1E059"/>
-          <Text style={styles.tools}>JavaScript</Text>
+          <Text style={styles.tools}>{item.language}</Text>
         </View>
-      </View>
-      <View>
-        <View style={styles.startWrapper}>
-          <MaterialCommunityIcons name="star-outline" size={20}/>
-          <Text style={styles.textStart}>Start</Text>
-        </View>
-        <Text style={styles.update}>Update 8 hour ago</Text>
       </View>
     </View>
   );
@@ -28,7 +24,6 @@ export default CardRepo;
 const styles = StyleSheet.create({
   card:{
     flexDirection:'row',
-    justifyContent:'space-between',
     marginHorizontal:16,
     borderWidth:1,
     marginVertical:10,
@@ -38,11 +33,18 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     borderBottomColor:'#6E7377',
     elevation:10,
+    alignItems:'center',
+  },
+  avatar:{
+    width:50,
+    height:50,
+    borderRadius:50,
+    marginRight:15,
   },
   title:{
     color:'#2661BB',
     fontWeight:'bold',
-    fontSize:20,
+    fontSize:18,
     marginBottom:10,
   },
   toolsWrapper:{
